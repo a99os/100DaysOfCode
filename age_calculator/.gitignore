@@ -1,16 +1,24 @@
-# Avoid accidental upload of the Sketch and Figma design files
-#####################################################
-## Please do not remove lines 5 and 6 - thanks! 🙂 ##
-#####################################################
-*.sketch
-*.fig
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
 
-# Avoid accidental XD upload if you convert the design file
-###############################################
-## Please do not remove line 12 - thanks! 🙂 ##
-###############################################
-*.xd
+# Node dependencies
+node_modules
 
-# Avoid your project being littered with annoying .DS_Store files!
+# Logs
+logs
+*.log
+
+# Misc
 .DS_Store
-.prettierignore
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
