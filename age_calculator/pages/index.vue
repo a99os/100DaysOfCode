@@ -118,7 +118,7 @@ function getAge() {
   }
 }
 function yearCheck() {
-  if (year.value > new Date().getFullYear()) {
+  if (year.value < 100 || year.value > new Date().getFullYear()) {
     yearErrorMessage.value = "Must be in the past"
   } else {
     monthCheck()
@@ -141,7 +141,7 @@ function dayCheck() {
 
   }
   else {
-    if (!monthErrorMessage.value && new Date(`${year.value}-${+month.value}-${day.value}`).getMonth() + 1 != month.value) {
+    if (!yearErrorMessage.value && !monthErrorMessage.value && new Date(`${year.value}-${+month.value}-${day.value}`).getMonth() + 1 != month.value) {
       dayErrorMessage.value = "Must be a valid day"
     }
   }
@@ -153,6 +153,9 @@ function clearErrorMessage() {
   dayErrorMessage.value = null
   monthErrorMessage.value = null
   yearErrorMessage.value = null
+  dayResult.value = null
+  monthResult.value = null
+  yearResult.value = null
 }
 
 useSeoMeta({
