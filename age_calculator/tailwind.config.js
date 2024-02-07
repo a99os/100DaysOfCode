@@ -12,6 +12,7 @@ module.exports = {
     theme: {
       extend: {},
       colors: {
+        transparent:"transparent",
         purple: 'hsl(259,100%,65%)',
         light_red: 'hsl(0,100%,67%)',
         off_white: 'hsl(0,0%,94%)',

@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/google-fonts"],
   googleFonts: {
     families: {
-      Poppins: true,
+      Poppins: [400,700,800],
     },
   },
 });
