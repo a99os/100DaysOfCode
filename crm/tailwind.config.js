@@ -15,6 +15,7 @@ module.exports = {
       hoverColor: "#133155",
       colorPrimary: "#feedd9",
       activeColor: "#f8ac8c",
+      green: "#00563f",
       transparent: "transparent",
     },
     fontSize: {
