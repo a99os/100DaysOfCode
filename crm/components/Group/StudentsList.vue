@@ -1,5 +1,5 @@
 <template lang="">
-  <ul class="py-[100px] block">
+  <ul class="py-10 md:py-[100px] block">
     <li v-for="i in 20">
       <GroupStudentInfo />
     </li>

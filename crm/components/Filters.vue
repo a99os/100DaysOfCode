@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    class="py-3 w-full border-colorPrimary px-4 border-b grid grid-cols-4 gap-[15px]"
+    class="py-3 w-full border-colorPrimary px-4 border-b grid md:grid-cols-4 gap-[15px]"
   >
     <v-select
       :options="['Active', 'Noactive']"

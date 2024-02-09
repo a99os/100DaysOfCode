@@ -9,7 +9,7 @@
 
     <p class="text-activeColor">
       Ustoz:
-      <b class="text-lightGreen">{{ group.teacher }}</b>
+      <b class="text-lightGreen">{{ group.teacher }} </b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
