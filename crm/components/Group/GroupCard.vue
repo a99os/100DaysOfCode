@@ -1,9 +1,10 @@
 <template lang="">
-  <div
+  <NuxtLink
+    :to="`/groups/${props.data.id}`"
     class="w-full h-[200px] flex group items-center relative rounded-lg bg-cover bg-hoverColor overflow-hidden"
   >
     <img
-      :src="`/groups/${props.data.id}.webp `"
+      :src="props.data.img"
       alt=""
       class="absolute w-full h-full group-hover:scale-125 duration-300"
     />
@@ -12,11 +13,11 @@
     </div>
 
     <div
-      class="relative text-[13px] group-hover:pt-[50px] items-center group-hover:text-[20px] z-[2] w-full px-10 bg-[#000000c7] grid grid-cols-2 h-[120px] group-hover:h-full duration-300"
+      class="relative text-[13px] group-hover:pt-[50px] items-center group-hover:text-[20px] z-[2] w-full px-5 bg-opcBlack grid grid-cols-2 h-[120px] group-hover:h-full duration-300"
     >
       <div class="flex col-span-2 items-center gap-[5px]">
         <i class="bx bx-user-circle"></i>
-        <p class="">{{ props.data.teacher }}</p>
+        <p class="uppercase leading-[20px]">{{ props.data.teacher }}</p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bxs-group"></i>
@@ -36,10 +37,10 @@
       </div>
       <div class="flex items-center col-span-2 gap-[5px]">
         <i class="bx bxs-book"></i>
-        <p class="">{{ props.data.direction }}</p>
+        <p class="uppercase">{{ props.data.direction }}</p>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 <script setup>
 const props = defineProps(["data"]);

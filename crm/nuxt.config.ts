@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/google-fonts", "@pinia/nuxt"],
   googleFonts: {
     families: {
       Jost: [400, 500, 600, 700],

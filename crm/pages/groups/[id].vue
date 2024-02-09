@@ -2,11 +2,9 @@
   <div>
     <div class="fixed z-10 bg-bgPrimary w-[100vw]">
       <Header />
-      <Filters class="relative" />
+      <GroupInfo />
     </div>
-
-    <GroupGroupsList class="pt-[150px]" />
   </div>
 </template>
-<script setup></script>
+<script></script>
 <style lang=""></style>
