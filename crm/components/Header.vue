@@ -1,21 +1,22 @@
 <template lang="">
   <div
-    class="h-[90px] text-[24px] py-2 border-b flex items-center border-colorPrimary"
+    class="h-[60px] md:h-[90px] md:text-[24px] py-2 border-b flex items-center border-colorPrimary"
   >
     <a
-      class="p-5 border-r border-colorPrimary hover:bg-hoverColor duration-300"
+      class="p-3 md:p-5 border-r border-colorPrimary hover:bg-hoverColor duration-300"
       href="/"
       >LOGO</a
     >
     <NuxtLink
-      class="tracking-[3px] hover:bg-hoverColor duration-300 p-5"
+      class="tracking-[3px] flex gap-3 items-center hover:bg-hoverColor duration-300 p-3 md:p-5"
       to="/groups"
-      >Guruhlar</NuxtLink
-    >
-    <NuxtLink
-      class="tracking-[3px] hover:bg-hoverColor duration-300 p-5"
+      ><i class="bx bxs-data text-[20px]"></i>
+      <h1 class="hidden md:block">Guruhlar</h1></NuxtLink
+    ><NuxtLink
+      class="tracking-[3px] flex gap-3 items-center hover:bg-hoverColor duration-300 p-3 md:p-5"
       to="/students"
-      >O'quvchilar</NuxtLink
+      ><i class="bx bx-group text-[20px]"></i>
+      <h1 class="hidden md:block">O'quvchilar</h1></NuxtLink
     >
   </div>
 </template>

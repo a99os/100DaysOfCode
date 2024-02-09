@@ -1,8 +1,8 @@
 <template lang="">
   <ul
-    class="w-full min-h-[50px] bg-opcBlack border-b border-colorPrimary flex gap-3 items-center text-[16px] justify-center h-full"
+    class="w-full min-h-[50px] flex-col md:flex-row bg-opcBlack border-b border-colorPrimary flex md:gap-3 items-start py-2 px-3 md:items-center text-[16px] justify-center h-full"
   >
-    <b class="text-colorPrimary h-[80%] rounded-md bg-green">{{
+    <b class="text-colorPrimary py-1 px-2 rounded-md bg-green">{{
       group.name
     }}</b>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
