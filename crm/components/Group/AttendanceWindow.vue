@@ -59,7 +59,7 @@
       </div>
       <div class="grid items-center mt-3 grid-cols-2 py-1">
         <button
-          @click="hiddenWindow2"
+          @click="() => (useGeneralStore().showAttendanceModal = true)"
           class="bg-green rounded-l-md px-2 hover:opacity-100 opacity-80 py-1 md:text-[24px] font-medium"
         >
           💾 Saqlash</button
@@ -71,6 +71,21 @@
         </button>
       </div>
     </div>
+    <Modalka
+      v-if="useGeneralStore().showAttendanceModal"
+      :text="'Davomatni saqlamoqchimisiz'"
+      @funcYes="
+        () => {
+          useGeneralStore().showAttendance = false;
+          useGeneralStore().showAttendanceModal = false;
+        }
+      "
+      @funcNo="
+        () => {
+          useGeneralStore().showAttendanceModal = false;
+        }
+      "
+    />
   </div>
 </template>
 <script setup>

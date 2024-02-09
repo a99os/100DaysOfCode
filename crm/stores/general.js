@@ -2,5 +2,6 @@ import { defineStore } from "pinia";
 
 export const useGeneralStore = defineStore("useGeneralStore", () => {
   let showAttendance = ref(false);
-  return { showAttendance };
+  let showAttendanceModal = ref(false);
+  return { showAttendance, showAttendanceModal };
 });
