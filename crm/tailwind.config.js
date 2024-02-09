@@ -16,9 +16,11 @@ module.exports = {
       colorPrimary: "#feedd9",
       activeColor: "#f8ac8c",
       green: "#00563f",
+      red: "#4e0707",
       lightGreen: "#98fb98",
       opcBlack: "#000000c7",
       transparent: "transparent",
+      darkYellow: "#ffef00",
     },
     fontSize: {
       prm: "24px",

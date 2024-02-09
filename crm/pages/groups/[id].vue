@@ -4,6 +4,10 @@
       <Header />
       <GroupInfo />
     </div>
+    <div class="pt-[150px]">
+      <GroupLessonsInfo />
+      <GroupStudentsList />
+    </div>
   </div>
 </template>
 <script></script>
