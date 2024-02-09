@@ -8,7 +8,7 @@
       <GroupLessonsInfo />
       <GroupStudentsList />
     </div>
-    <!-- <GroupAttendanceWindow class="" /> -->
+    <GroupAttendanceWindow class="" />
   </div>
 </template>
 <script></script>

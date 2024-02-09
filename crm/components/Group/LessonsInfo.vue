@@ -8,6 +8,7 @@
       Darslar soni: {{ 20 }} ta
     </div>
     <button
+      @click="() => (useGeneralStore().showAttendance = true)"
       class="absolute font-bold px-3 z-[3] text-[16px] text-bgPrimary py-1 -top-[20px] right-5 duration-300 bg-darkYellow hover:bg-colorPrimary border border-colorPrimary rounded-md"
     >
       <span v-if="true">
@@ -23,5 +24,7 @@
     </ul>
   </div>
 </template>
-<script setup></script>
+<script setup>
+import { useGeneralStore } from "@/stores/general";
+</script>
 <style lang=""></style>
