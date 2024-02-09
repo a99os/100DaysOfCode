@@ -14,7 +14,7 @@
       <span v-if="true">
         + 📋 <span class="hidden md:inline">Yo'qlama qilish</span>
       </span>
-      <span v-else>
+      <span @click="() => (useGeneralStore().showAttendance = true)" v-else>
         📝
         <span class="hidden md:inline">O'zgartirish</span></span
       >
