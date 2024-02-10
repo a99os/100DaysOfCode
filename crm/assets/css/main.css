@@ -10,10 +10,10 @@ body {
   transition-duration: 300ms;
   --vs-controls-color: #f8ac8c;
   --vs-border-color: #f8ac8c;
-
+  --vs-dropdown-max-height: 200px;
   --vs-dropdown-bg: #133155;
   --vs-dropdown-color: #133155;
-  --vs-dropdown-option-color: #f8ac8c;
+  --vs-dropdown-option-color: #ff4d00;
 
   --vs-selected-bg: #133155;
   --vs-selected-color: #eeeeee;

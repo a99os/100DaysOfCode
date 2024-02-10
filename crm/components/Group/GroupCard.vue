@@ -4,7 +4,7 @@
     class="w-full h-[200px] flex group items-center relative rounded-lg bg-cover bg-hoverColor overflow-hidden"
   >
     <img
-      :src="props.data.img"
+      src="/groups/default.jpeg"
       alt=""
       class="absolute w-full h-full group-hover:scale-125 duration-300"
     />
@@ -17,11 +17,13 @@
     >
       <div class="flex col-span-2 items-center gap-[5px]">
         <i class="bx bx-user-circle"></i>
-        <p class="uppercase leading-[20px]">{{ props.data.teacher }}</p>
+        <p class="uppercase leading-[20px]">
+          {{ props.data.mainTeacher?.full_name }}
+        </p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bxs-group"></i>
-        <p class="">{{ props.data.studentCount }}</p>
+        <p class="">{{ props.data.students?.length }}</p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bx-building-house"></i>
@@ -33,11 +35,13 @@
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bx-calendar"></i>
-        <p class="">{{ props.data.weekDays }}</p>
+        <p class="">
+          {{ props.data?.weekDays?.map((el) => el.name.slice(0, 2)).join(",") }}
+        </p>
       </div>
       <div class="flex items-center col-span-2 gap-[5px]">
         <i class="bx bxs-book"></i>
-        <p class="uppercase">{{ props.data.direction }}</p>
+        <p class="uppercase">{{ props.data.direction?.name }}</p>
       </div>
     </div>
   </NuxtLink>

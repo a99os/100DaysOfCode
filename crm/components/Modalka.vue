@@ -1,9 +1,17 @@
 <template lang="">
   <div
+    @click="hiddenWindow"
+    :class="
+      useGeneralStore().showModal
+        ? `translate-y-[0px] scale-y-100`
+        : `translate-y-[-100px] scale-y-0`
+    "
     id="windowWrapper"
-    class="fixed w-[100vw] flex justify-center items-center px-2 top-0 z-[100] h-[100vh] bg-[#fffefe88] backdrop-blur-[2px]"
+    class="fixed w-[100vw] duration-300 flex justify-center items-center px-2 top-0 z-[100] h-[100vh] bg-[#fffefe88] backdrop-blur-[2px]"
   >
-    <div class="rounded-md w-[90%] bg-hoverColor py-5 md:py-10 px-5 md:px-14">
+    <div
+      class="rounded-md w-[90%] md:w-auto bg-hoverColor py-5 md:py-10 px-5 md:px-14"
+    >
       <h1 class="text-center text-[25px] font-medium">
         {{ props.text }}
       </h1>

@@ -6,6 +6,7 @@
     </div>
 
     <GroupGroupsList class="md:pt-[150px]" />
+    <GroupFormGroupAdd class="" />
   </div>
 </template>
 <script setup></script>

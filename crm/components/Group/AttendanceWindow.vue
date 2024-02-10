@@ -2,8 +2,12 @@
   <div
     id="windowWrapper"
     @click="hiddenWindow"
-    :class="useGeneralStore().showAttendance ? 'block' : 'hidden'"
-    class="fixed w-[100vw] flex justify-center items-center px-2 top-0 z-[20] h-[100vh] bg-[#fffefe88] backdrop-blur-[2px]"
+    :class="
+      useGeneralStore().showAttendance
+        ? `translate-y-[0px] scale-y-100`
+        : `translate-y-[-100px] scale-y-0`
+    "
+    class="fixed w-[100vw] flex justify-center items-center px-2 duration-300 top-0 z-[20] h-[100vh] bg-[#fffefe88] backdrop-blur-[2px]"
   >
     <div
       class="h-[90%] md:h-[80%] w-full overflow-x-scroll md:min-w-[920px] rounded-md bg-bgPrimary py-5 md:py-10 px-5 md:px-14"
@@ -59,7 +63,7 @@
       </div>
       <div class="grid items-center mt-3 grid-cols-2 py-1">
         <button
-          @click="() => (useGeneralStore().showAttendanceModal = true)"
+          @click="() => (useGeneralStore().showModal = true)"
           class="bg-green rounded-l-md px-2 hover:opacity-100 opacity-80 py-1 md:text-[24px] font-medium"
         >
           💾 Saqlash</button
@@ -72,24 +76,22 @@
       </div>
     </div>
     <Modalka
-      v-if="useGeneralStore().showAttendanceModal"
-      :text="'Davomatni saqlamoqchimisiz'"
+      :text="'Davomatni saqlamoqchimisiz?'"
       @funcYes="
         () => {
           useGeneralStore().showAttendance = false;
-          useGeneralStore().showAttendanceModal = false;
+          useGeneralStore().showModal = false;
         }
       "
       @funcNo="
         () => {
-          useGeneralStore().showAttendanceModal = false;
+          useGeneralStore().showModal = false;
         }
       "
     />
   </div>
 </template>
 <script setup>
-import { useGeneralStore } from "@/stores/general";
 let attendance = ref([]);
 let load = ref(false);
 let students = ref([

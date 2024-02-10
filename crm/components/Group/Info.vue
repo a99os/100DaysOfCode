@@ -9,22 +9,26 @@
 
     <p class="text-activeColor">
       Ustoz:
-      <b class="text-lightGreen">{{ group.teacher }} </b>
+      <b class="text-lightGreen"
+        >{{ group.teachers.map((el) => el.full_name).join(", ") }}
+      </b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       Fan:
-      <b class="text-lightGreen">{{ group.direction }}</b>
+      <b class="text-lightGreen">{{ group.direction.name }}</b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       O'quvchilar soni:
-      <b class="text-lightGreen"> {{ group.studentCount }} ta </b>
+      <b class="text-lightGreen"> {{ group.students?.length }} ta </b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       Bo'ladigan kunlar:
-      <b class="text-lightGreen"> {{ group.weekDays }}</b>
+      <b class="text-lightGreen">
+        {{ group?.weekDays?.map((el) => el.name.slice(0, 2)).join(",") }}</b
+      >
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">

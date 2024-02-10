@@ -12,6 +12,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  pinia: {
+    storesDirs: ["./stores/**", "./custom-folder/stores/**"],
+  },
   modules: ["@nuxtjs/google-fonts", "@pinia/nuxt"],
   googleFonts: {
     families: {
@@ -19,4 +22,5 @@ export default defineNuxtConfig({
     },
     // Options
   },
+  // plugins: ["~/plugins/vue-select.js"],
 });
