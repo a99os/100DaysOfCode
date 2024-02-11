@@ -5,7 +5,12 @@
     <div
       class="absolute font-bold px-3 z-[3] text-[16px] text-bgPrimary py-1 -top-[20px] left-5 bg-colorPrimary border border-colorPrimary rounded-md"
     >
-      Darslar soni: {{ 20 }} ta
+      <span class="hidden md:block">
+        Darslar soni:
+        {{ group.lessons?.length ? group.lessons?.length : 0 }} ta </span
+      ><span class="md:hidden">
+        📚: {{ group.lessons?.length ? group.lessons?.length : 0 }} ta
+      </span>
     </div>
     <div class="flex gap-[10px] absolute -top-[20px] right-5">
       <!-- guruh malumotlarini o'zgarish tugmasi -->
@@ -30,11 +35,19 @@
       </button>
     </div>
     <ul class="flex flex-wrap gap-y-4 gap-x-2 items-center">
-      <li v-for="i in 20" class="px-2 py-1 bg-green rounded-md">12.02</li>
+      <li
+        v-for="i in group.lessons?.length ? group.lessons?.length : 0"
+        class="px-2 py-1 bg-green rounded-md"
+      >
+        12.02
+      </li>
     </ul>
   </div>
 </template>
 <script setup>
 import { useGeneralStore } from "@/stores/general";
+let group = useGroupStore().groups.findLast(
+  (el) => el.id == useRoute().params.id
+);
 </script>
 <style lang=""></style>
