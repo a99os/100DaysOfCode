@@ -10,6 +10,7 @@ export const useGroupStore = defineStore("groupsData", () => {
         { id: 1, full_name: "Abbos Ashirboyev" },
         { id: 3, full_name: "Sa'dullayev Abdulla" },
       ],
+      lessons: {},
       mainTeacher: { id: 1, full_name: "Abbos Ashirboyev" },
       room: "125",
       weekDays: [
@@ -43,6 +44,32 @@ export const useGroupStore = defineStore("groupsData", () => {
         { id: 3, name: "Chorshanba" },
         { id: 5, name: "Juma" },
       ],
+      lessons: {
+        "2/10/2024": {
+          attendance: [4, 1, 2, 3],
+          date: "2/11/2024",
+          theme: "njknjnk jnnkj knjkk",
+          reasons: {},
+        },
+        "2/9/2024": {
+          attendance: [1, 2],
+          date: "2/11/2024",
+          theme: "njknjnk jnnkj knjkk",
+          reasons: {},
+        },
+        "2/8/2024": {
+          attendance: [3, 1],
+          date: "2/11/2024",
+          theme: "njknjnk jnnkj knjkk",
+          reasons: {},
+        },
+        "2/7/2024": {
+          attendance: [2, 1, 4],
+          date: "2/11/2024",
+          theme: "njknjnk jnnkj knjkk",
+          reasons: {},
+        },
+      },
       startTime: "18:00",
       students: [
         { id: 4, full_name: "John Jones" },
@@ -55,6 +82,7 @@ export const useGroupStore = defineStore("groupsData", () => {
       id: 3,
       name: "3-guruh",
       direction: { id: 5, name: "Arab tili" },
+      lessons: {},
       teachers: [{ id: 3, full_name: "Sa'dullayev Abdulla" }],
       mainTeacher: { id: 3, full_name: "Sa'dullayev Abdulla" },
       room: "777",
@@ -64,9 +92,19 @@ export const useGroupStore = defineStore("groupsData", () => {
     },
   ]);
 
+  function getLessonToday() {
+    let ind = useGroupStore().groups.findIndex(
+      (el) => el.id == useRoute().params.id
+    );
+    let date = new Date().toLocaleDateString();
+    if (this.groups[ind]?.lessons[date]) {
+      return this?.groups[ind]?.lessons[date] || {};
+    }
+  }
+
   function getGroup(id) {
     return this.groups.find((g) => g.id == id);
   }
 
-  return { groups, getGroup };
+  return { groups, getGroup, getLessonToday };
 });

@@ -7,9 +7,10 @@
     >
       <span class="hidden md:block">
         Darslar soni:
-        {{ group.lessons?.length ? group.lessons?.length : 0 }} ta </span
+        {{ Object.keys(getGroup().lessons)?.length || 0 }}
+        ta </span
       ><span class="md:hidden">
-        📚: {{ group.lessons?.length ? group.lessons?.length : 0 }} ta
+        📚: {{ getGroup().lessons?.length || 0 }} ta
       </span>
     </div>
     <div class="flex gap-[10px] absolute -top-[20px] right-5">
@@ -18,14 +19,17 @@
         @click="() => (useGeneralStore().showGroupAdd = true)"
         class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-opcBlack py-1 duration-300 bg-red hover:bg-colorPrimary border border-colorPrimary rounded-md"
       >
-        <span> ⚙️ <span class="hidden md:inline">O'zgartish</span> </span>
+        <span>
+          ⚙️ <span class="hidden md:inline">Guruhni o'zgartish</span>
+        </span>
       </button>
       <!-- davomat qilish tugmasi -->
       <button
         @click="() => (useGeneralStore().showAttendance = true)"
         class="font-bold px-3 z-[3] text-[16px] text-bgPrimary py-1 duration-300 bg-darkYellow hover:bg-colorPrimary border border-colorPrimary rounded-md"
       >
-        <span v-if="true">
+        <!-- {{ useGroupStore().getLessonToday() }} -->
+        <span v-if="!useGroupStore().getLessonToday()">
           + 📋 <span class="hidden md:inline">Davomat qilish</span>
         </span>
         <span @click="() => (useGeneralStore().showAttendance = true)" v-else>
@@ -34,20 +38,24 @@
         >
       </button>
     </div>
-    <ul class="flex flex-wrap gap-y-4 gap-x-2 items-center">
+    <ul
+      class="flex flex-wrap text-[20px] font-bold gap-y-4 gap-x-2 items-center"
+    >
       <li
-        v-for="i in group.lessons?.length ? group.lessons?.length : 0"
-        class="px-2 py-1 bg-green rounded-md"
+        v-for="i in Object.keys(getGroup().lessons).sort(
+          (a, b) => new Date(a) - new Date(b)
+        )"
+        class="px-2 py-2 bg-green text-colorPrimary rounded-md"
       >
-        12.02
+        {{ i }}
       </li>
     </ul>
   </div>
 </template>
 <script setup>
 import { useGeneralStore } from "@/stores/general";
-let group = useGroupStore().groups.findLast(
-  (el) => el.id == useRoute().params.id
-);
+function getGroup() {
+  return useGroupStore().groups.findLast((el) => el.id == useRoute().params.id);
+}
 </script>
 <style lang=""></style>
