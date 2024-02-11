@@ -94,72 +94,7 @@
 <script setup>
 let attendance = ref([]);
 let load = ref(false);
-let students = ref([
-  {
-    id: 1,
-    full_name: "Abbos Ashirboyev",
-  },
-  {
-    id: 2,
-    full_name: "Nodir Abdullayev",
-  },
-  {
-    id: 3,
-    full_name: "Begzod Maxkamov",
-  },
-  {
-    id: 4,
-    full_name: "Otabek Farxadov",
-  },
-  {
-    id: 1,
-    full_name: "Abbos Ashirboyev",
-  },
-  {
-    id: 2,
-    full_name: "Nodir Abdullayev",
-  },
-  {
-    id: 3,
-    full_name: "Begzod Maxkamov",
-  },
-  {
-    id: 4,
-    full_name: "Otabek Farxadov",
-  },
-  {
-    id: 1,
-    full_name: "Abbos Ashirboyev",
-  },
-  {
-    id: 2,
-    full_name: "Nodir Abdullayev",
-  },
-  {
-    id: 3,
-    full_name: "Begzod Maxkamov",
-  },
-  {
-    id: 4,
-    full_name: "Otabek Farxadov",
-  },
-  {
-    id: 1,
-    full_name: "Abbos Ashirboyev",
-  },
-  {
-    id: 2,
-    full_name: "Nodir Abdullayev",
-  },
-  {
-    id: 3,
-    full_name: "Begzod Maxkamov",
-  },
-  {
-    id: 4,
-    full_name: "Otabek Farxadov",
-  },
-]);
+let students = ref([]);
 let reasons = ref({});
 
 function addAllAttendance() {
@@ -188,6 +123,9 @@ function attendanceChange(type, id) {
 }
 
 onMounted(() => {
+  students.value = useGroupStore().groups.findLast(
+    (el) => el.id == useRoute().params.id
+  )?.students;
   addAllAttendance();
   load.value = true;
 });
