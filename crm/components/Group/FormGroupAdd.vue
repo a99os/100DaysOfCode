@@ -169,6 +169,11 @@ function saveFunction() {
   useGeneralStore().showGroupAdd = false;
   useGeneralStore().showModal = false;
 }
+function hiddenWindow(e) {
+  if (e.target.id == "windowWrapper") {
+    useGeneralStore().showGroupAdd = false;
+  }
+}
 onMounted(() => {
   if (useRoute()?.params?.id) {
     ind.value = useGroupStore().groups.findIndex(
