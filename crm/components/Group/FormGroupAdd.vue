@@ -16,7 +16,7 @@
         <h1 class="md:col-span-2 text-[24px] text-center font-bold">
           Yangi Guruh qo'shish
         </h1>
-        <div class="">
+        <div>
           <label for="group_name" class="px-2 block">Guruh nomi:</label>
           <input
             type="text"
@@ -32,7 +32,6 @@
             :selectOnTab="true"
             :options="useGeneralStore().directions"
             placeholder="Fan"
-            class=""
             id="direction"
             v-model="group.direction"
             label="name"
@@ -45,7 +44,6 @@
             :selectOnTab="true"
             :options="useGeneralStore().teachers"
             placeholder="Uztozlar"
-            class=""
             id="teachers"
             v-model="group.teachers"
             :closeOnSelect="false"
@@ -60,13 +58,12 @@
             id="mainTeacher"
             :options="group?.teachers?.length ? group.teachers : []"
             placeholder="Asosiy Ustoz"
-            class=""
             v-model="group.mainTeacher"
             :closeOnSelect="false"
             label="full_name"
           ></v-select>
         </div>
-        <div class="">
+        <div>
           <label for="room" class="px-2 block">Xona:</label>
           <input
             type="text"
@@ -85,7 +82,6 @@
             id="weekDays"
             :options="useGeneralStore().weekDays"
             placeholder="Dars bo'ladigan kunlar"
-            class=""
             v-model="group.weekDays"
             :closeOnSelect="false"
             label="name"
@@ -109,7 +105,6 @@
             id="students"
             :options="useGeneralStore().students"
             placeholder="O'quvchilar"
-            class=""
             v-model="group.students"
             :closeOnSelect="false"
             label="full_name"

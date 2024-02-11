@@ -5,21 +5,18 @@
     <v-select
       :options="['Active', 'Noactive']"
       placeholder="Holati bo'yicha"
-      class=""
       :closeOnSelect="false"
       :multiple="true"
     ></v-select>
     <v-select
       :options="['Ustoz1', 'Ustoz2']"
       placeholder="Uztozlar"
-      class=""
       :closeOnSelect="false"
       :multiple="true"
     ></v-select>
     <v-select
       :options="['Matematika', 'Fizika', 'Ingliz tili']"
       placeholder="Fanlar"
-      class=""
       :closeOnSelect="false"
       :multiple="true"
     ></v-select>

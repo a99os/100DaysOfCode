@@ -12,7 +12,6 @@
     <div
       class="h-[90%] md:h-[80%] w-full overflow-x-scroll md:min-w-[920px] rounded-md bg-bgPrimary py-5 md:py-10 px-5 md:px-14"
     >
-      {{ lesson }}
       <div class="flex w-full gap-10 item-center">
         <p class="w-[50px] md:w-[100px]">Sana:</p>
         <input
@@ -32,7 +31,7 @@
       </div>
       <ul v-if="load" class="mt-10 h-[calc(100%-180px)] overflow-y-scroll">
         <li
-          v-for="(item, i) in new Array(...getStudents())"
+          v-for="(item, i) in [...getStudents()]"
           class="flex gap-2 mt-2 items-center"
         >
           <p class="w-10 md:text-[24px]">{{ i + 1 }}.</p>
@@ -109,17 +108,18 @@ let reasons = ref({});
 let lesson = ref({});
 let ind = ref(null);
 function yesFnc() {
-  useGroupStore().groups[ind.value].lessons[getDate(lesson.value.date)] =
-    new Object({
-      ...lesson.value,
-      reasons: new Object(reasons),
-    });
+  useGroupStore().groups[ind.value].lessons[getDate(lesson.value.date)] = {
+    ...lesson.value,
+    reasons: { ...reasons },
+  };
+
+  lesson.value = { ...useGroupStore().getLessonToday() };
   useGeneralStore().showAttendance = false;
   useGeneralStore().showModal = false;
 }
 function getStudents() {
   if (useGroupStore().groups[ind.value]?.students?.length) {
-    return new Array(...useGroupStore().groups[ind.value]?.students);
+    return [...useGroupStore().groups[ind.value]?.students];
   } else {
     return [];
   }
@@ -136,7 +136,7 @@ function getDate(date) {
   return new Date(date).toLocaleDateString();
 }
 function addAllAttendance() {
-  lesson.value.attendance = getStudents()?.map((student) => student.id);
+  lesson.value.attendance = [...getStudents()]?.map((student) => student.id);
   lesson.value.date = new Date().toLocaleDateString();
 }
 
@@ -144,7 +144,7 @@ function hiddenWindow(e) {
   if (e.target.id == "windowWrapper2") {
     useGeneralStore().showAttendance = false;
     if (useGroupStore().getLessonToday()) {
-      lesson.value = new Object({ ...useGroupStore().getLessonToday() });
+      lesson.value = { ...useGroupStore().getLessonToday() };
     } else {
       addAllAttendance();
     }
@@ -158,9 +158,7 @@ function attendanceChange(type, id) {
     }
   } else {
     if (lesson.value?.attendance?.includes(id)) {
-      lesson.value.attendance = [
-        ...lesson.value.attendance.filter((el) => el != id),
-      ];
+      lesson.value.attendance.splice(lesson.value.attendance.indexOf(id), 1);
     }
   }
 }
@@ -177,11 +175,9 @@ onMounted(() => {
   //   lesson.value = useGroupStore()?.groups[ind.value]?.lessons[date] || {};
   // }
   if (useGroupStore().getLessonToday()) {
-    lesson.value = new Object({ ...useGroupStore().getLessonToday() });
+    lesson.value = { ...useGroupStore().getLessonToday() };
     reasons.value = lesson.value.reasons;
-    console.log(reasons);
   }
-  console.log(lesson.value);
 });
 </script>
 <style scoped>

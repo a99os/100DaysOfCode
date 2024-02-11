@@ -21,6 +21,7 @@ module.exports = {
       opcBlack: "#000000c7",
       transparent: "transparent",
       darkYellow: "#ffef00",
+      blue: "#2832c2",
     },
     fontSize: {
       prm: "24px",

@@ -7,7 +7,7 @@
     >
       <span class="hidden md:block">
         Darslar soni:
-        {{ Object.keys(getGroup().lessons)?.length || 0 }}
+        {{ Object.keys(getGroup().lessons).length }}
         ta </span
       ><span class="md:hidden">
         📚: {{ getGroup().lessons?.length || 0 }} ta
@@ -17,7 +17,7 @@
       <!-- guruh malumotlarini o'zgarish tugmasi -->
       <button
         @click="() => (useGeneralStore().showGroupAdd = true)"
-        class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-opcBlack py-1 duration-300 bg-red hover:bg-colorPrimary border border-colorPrimary rounded-md"
+        class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-red hover:border-red py-1 duration-300 bg-red hover:bg-colorPrimary border border-colorPrimary rounded-md"
       >
         <span>
           ⚙️ <span class="hidden md:inline">Guruhni o'zgartish</span>
@@ -26,7 +26,7 @@
       <!-- davomat qilish tugmasi -->
       <button
         @click="() => (useGeneralStore().showAttendance = true)"
-        class="font-bold px-3 z-[3] text-[16px] text-bgPrimary py-1 duration-300 bg-darkYellow hover:bg-colorPrimary border border-colorPrimary rounded-md"
+        class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-blue hover:border-blue py-1 duration-300 bg-blue hover:bg-colorPrimary border border-colorPrimary rounded-md"
       >
         <!-- {{ useGroupStore().getLessonToday() }} -->
         <span v-if="!useGroupStore().getLessonToday()">

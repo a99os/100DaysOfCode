@@ -23,19 +23,19 @@
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bxs-group"></i>
-        <p class="">{{ props.data.students?.length }}</p>
+        <p>{{ props.data.students?.length }}</p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bx-building-house"></i>
-        <p class="">{{ props.data.room }}</p>
+        <p>{{ props.data.room }}</p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bx-time"></i>
-        <p class="">{{ props.data.startTime }}</p>
+        <p>{{ props.data.startTime }}</p>
       </div>
       <div class="flex items-center gap-[5px]">
         <i class="bx bx-calendar"></i>
-        <p class="">
+        <p>
           {{ props.data?.weekDays?.map((el) => el.name.slice(0, 2)).join(",") }}
         </p>
       </div>

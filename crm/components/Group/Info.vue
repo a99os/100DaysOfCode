@@ -1,10 +1,10 @@
 <template lang="">
   <ul
-    class="relative w-full min-h-[50px] flex-col md:flex-row bg-opcBlack border-b border-colorPrimary flex md:gap-3 items-start py-2 px-3 md:items-center text-[16px] justify-center h-full"
+    class="relative w-full min-h-[50px] flex-wrap flex-col md:flex-row bg-opcBlack border-b border-colorPrimary flex md:gap-3 items-start py-2 px-3 md:items-center text-[16px] justify-center h-full"
   >
     <button
       @click="useRouter().go(-1)"
-      class="bg-red py-1 px-2 flex items-center text-[40px] md:absolute left-1 rounded-md hover:opacity-100 opacity-65 text-colorPrimary"
+      class="bg-red py-1 px-2 flex items-center text-[40px] left-1 rounded-md hover:opacity-100 opacity-65 text-colorPrimary"
     >
       <i class="bx bx-arrow-back"></i>
     </button>
@@ -19,7 +19,7 @@
         >{{
           useGroupStore()
             .getGroup(id)
-            .teachers.map((el) => el.full_name)
+            .teachers?.map((el) => el.full_name)
             .join(", ")
         }}
       </b>
@@ -28,7 +28,7 @@
     <p class="text-activeColor">
       Fan:
       <b class="text-lightGreen">{{
-        useGroupStore().getGroup(id).direction.name
+        useGroupStore().getGroup(id).direction?.name
       }}</b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>

@@ -4,12 +4,12 @@
       <Header />
       <GroupInfo />
     </div>
-    <div class="pt-10 md:pt-[150px]">
+    <div class="pt-10 md:pt-[200px]">
       <GroupLessonsInfo />
       <GroupStudentsList />
     </div>
-    <GroupAttendanceWindow class="" />
-    <GroupFormGroupAdd class="" />
+    <GroupAttendanceWindow />
+    <GroupFormGroupAdd />
   </div>
 </template>
 <script></script>
