@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    id="windowWrapper"
+    id="windowWrapper2"
     @click="hiddenWindow"
     :class="
       useGeneralStore().showAttendance
@@ -12,6 +12,7 @@
     <div
       class="h-[90%] md:h-[80%] w-full overflow-x-scroll md:min-w-[920px] rounded-md bg-bgPrimary py-5 md:py-10 px-5 md:px-14"
     >
+      {{ lesson }}
       <div class="flex w-full gap-10 item-center">
         <p class="w-[50px] md:w-[100px]">Sana:</p>
         <input
@@ -30,7 +31,10 @@
         />
       </div>
       <ul v-if="load" class="mt-10 h-[calc(100%-180px)] overflow-y-scroll">
-        <li v-for="(item, i) in students" class="flex gap-2 mt-2 items-center">
+        <li
+          v-for="(item, i) in new Array(...getStudents())"
+          class="flex gap-2 mt-2 items-center"
+        >
           <p class="w-10 md:text-[24px]">{{ i + 1 }}.</p>
           <p class="md:text-[24px] min-w-[200px] md:min-w-[400px]">
             {{ item.full_name }}
@@ -90,16 +94,7 @@
     <Modalka
       v-if="useGeneralStore().showAttendance == true"
       :text="'Davomatni saqlamoqchimisiz?'"
-      @funcYes="
-        () => {
-          useGroupStore().groups[ind].lessons[getDate(lesson.date)] = {
-            ...lesson,
-            reasons,
-          };
-          useGeneralStore().showAttendance = false;
-          useGeneralStore().showModal = false;
-        }
-      "
+      @funcYes="yesFnc"
       @funcNo="
         () => {
           useGeneralStore().showModal = false;
@@ -110,39 +105,62 @@
 </template>
 <script setup>
 let load = ref(false);
-let students = ref([]);
 let reasons = ref({});
 let lesson = ref({});
 let ind = ref(null);
-
+function yesFnc() {
+  useGroupStore().groups[ind.value].lessons[getDate(lesson.value.date)] =
+    new Object({
+      ...lesson.value,
+      reasons: new Object(reasons),
+    });
+  useGeneralStore().showAttendance = false;
+  useGeneralStore().showModal = false;
+}
+function getStudents() {
+  if (useGroupStore().groups[ind.value]?.students?.length) {
+    return new Array(...useGroupStore().groups[ind.value]?.students);
+  } else {
+    return [];
+  }
+}
+function hiddenWindow2() {
+  if (useGroupStore().getLessonToday()) {
+    lesson.value = { ...useGroupStore().getLessonToday() };
+  } else {
+    addAllAttendance();
+  }
+  useGeneralStore().showAttendance = false;
+}
 function getDate(date) {
   return new Date(date).toLocaleDateString();
 }
 function addAllAttendance() {
-  lesson.value.attendance = students.value?.map((student) => student.id);
+  lesson.value.attendance = getStudents()?.map((student) => student.id);
   lesson.value.date = new Date().toLocaleDateString();
 }
 
 function hiddenWindow(e) {
-  if (e.target.id == "windowWrapper") {
-    if (lesson.value?.students?.length)
-      useGeneralStore().showAttendance = false;
+  if (e.target.id == "windowWrapper2") {
+    useGeneralStore().showAttendance = false;
+    if (useGroupStore().getLessonToday()) {
+      lesson.value = new Object({ ...useGroupStore().getLessonToday() });
+    } else {
+      addAllAttendance();
+    }
   }
-}
-function hiddenWindow2() {
-  useGeneralStore().showAttendance = false;
 }
 
 function attendanceChange(type, id) {
   if (type == "be") {
-    if (!lesson.value.attendance.includes(id)) {
+    if (!lesson.value?.attendance?.includes(id)) {
       lesson.value.attendance.push(id);
     }
   } else {
-    if (lesson.value.attendance.includes(id)) {
-      lesson.value.attendance = lesson.value.attendance.filter(
-        (el) => el != id
-      );
+    if (lesson.value?.attendance?.includes(id)) {
+      lesson.value.attendance = [
+        ...lesson.value.attendance.filter((el) => el != id),
+      ];
     }
   }
 }
@@ -151,7 +169,6 @@ onMounted(() => {
   ind.value = useGroupStore().groups.findIndex(
     (el) => el.id == useRoute().params.id
   );
-  students.value = useGroupStore().groups[ind.value]?.students;
   addAllAttendance();
   load.value = true;
   let date = new Date().toLocaleDateString();
@@ -160,7 +177,9 @@ onMounted(() => {
   //   lesson.value = useGroupStore()?.groups[ind.value]?.lessons[date] || {};
   // }
   if (useGroupStore().getLessonToday()) {
-    lesson.value = useGroupStore().getLessonToday();
+    lesson.value = new Object({ ...useGroupStore().getLessonToday() });
+    reasons.value = lesson.value.reasons;
+    console.log(reasons);
   }
   console.log(lesson.value);
 });

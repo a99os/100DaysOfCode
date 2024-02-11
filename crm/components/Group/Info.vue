@@ -9,37 +9,53 @@
       <i class="bx bx-arrow-back"></i>
     </button>
     <b class="text-colorPrimary mt-2 md:mt-0 py-1 px-2 rounded-md bg-green">{{
-      group.name
+      useGroupStore().getGroup(id).name
     }}</b>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
 
     <p class="text-activeColor">
       Ustoz:
       <b class="text-lightGreen"
-        >{{ group.teachers.map((el) => el.full_name).join(", ") }}
+        >{{
+          useGroupStore()
+            .getGroup(id)
+            .teachers.map((el) => el.full_name)
+            .join(", ")
+        }}
       </b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       Fan:
-      <b class="text-lightGreen">{{ group.direction.name }}</b>
+      <b class="text-lightGreen">{{
+        useGroupStore().getGroup(id).direction.name
+      }}</b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       O'quvchilar soni:
-      <b class="text-lightGreen"> {{ group.students?.length }} ta </b>
+      <b class="text-lightGreen">
+        {{ useGroupStore().getGroup(id).students?.length }} ta
+      </b>
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       Bo'ladigan kunlar:
       <b class="text-lightGreen">
-        {{ group?.weekDays?.map((el) => el.name.slice(0, 2)).join(",") }}</b
+        {{
+          useGroupStore()
+            .getGroup(id)
+            ?.weekDays?.map((el) => el.name.slice(0, 2))
+            .join(",")
+        }}</b
       >
     </p>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>
     <p class="text-activeColor">
       Soat:
-      <b class="text-lightGreen"> {{ group.startTime }}</b>
+      <b class="text-lightGreen">
+        {{ useGroupStore().getGroup(id).startTime }}</b
+      >
     </p>
   </ul>
 </template>
@@ -47,6 +63,6 @@
 import { useRoute } from "vue-router";
 import { useGroupStore } from "@/stores/groups";
 const id = useRoute().params.id;
-const group = useGroupStore().getGroup(id);
+// const group = useGroupStore().getGroup(id);
 </script>
 <style lang=""></style>

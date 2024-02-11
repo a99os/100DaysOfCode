@@ -22,5 +22,5 @@ export default defineNuxtConfig({
     },
     // Options
   },
-  // plugins: ["~/plugins/vue-select.js"],
+  // plugins: ["~/plugins/v-tooltip.js"],
 });

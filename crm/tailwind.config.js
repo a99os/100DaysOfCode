@@ -26,5 +26,4 @@ module.exports = {
       prm: "24px",
     },
   },
-  plugins: [],
 };

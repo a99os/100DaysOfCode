@@ -98,12 +98,15 @@ export const useGroupStore = defineStore("groupsData", () => {
     );
     let date = new Date().toLocaleDateString();
     if (this.groups[ind]?.lessons[date]) {
-      return this?.groups[ind]?.lessons[date] || {};
+      return new Object(this?.groups[ind]?.lessons[date]);
+    } else {
+      {
+      }
     }
   }
 
   function getGroup(id) {
-    return this.groups.find((g) => g.id == id);
+    return new Object(this.groups.find((g) => g.id == id));
   }
 
   return { groups, getGroup, getLessonToday };

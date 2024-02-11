@@ -124,7 +124,12 @@
             💾 Saqlash</button
           ><button
             type="button"
-            @click="() => (useGeneralStore().showGroupAdd = false)"
+            @click="
+              () => {
+                group = { ...useGroupStore().groups[ind] };
+                useGeneralStore().showGroupAdd = false;
+              }
+            "
             class="bg-red rounded-r-md px-2 hover:opacity-100 opacity-80 py-1 md:text-[24px] font-medium"
           >
             ❌ Bekor qilish
@@ -147,19 +152,13 @@
   />
 </template>
 <script setup>
-// let group_name = ref(null);
-// let teachers_id = ref([]);
-// let students_id = ref([]);
-// let weekDays = ref(null);
-// let startTime = ref(null);
-// let direction = ref(null);
 let group = ref({});
 import vSelect from "vue-select";
 let ind = ref(null);
 let messageModal = ref("Yangi guruh ochmoqchimisz?");
 function saveFunction() {
   if (useRoute().params.id) {
-    useGroupStore().groups[ind.value] = group.value;
+    useGroupStore().groups[ind.value] = { ...group.value };
   } else {
     useGroupStore().groups.push({
       id: useGroupStore().groups.length + 1,
@@ -173,6 +172,7 @@ function saveFunction() {
 function hiddenWindow(e) {
   if (e.target.id == "windowWrapper") {
     useGeneralStore().showGroupAdd = false;
+    group.value = { ...useGroupStore().groups[ind.value] };
   }
 }
 onMounted(() => {
@@ -180,7 +180,7 @@ onMounted(() => {
     ind.value = useGroupStore().groups.findIndex(
       (el) => el.id == useRoute().params.id
     );
-    group.value = useGroupStore().groups[ind.value];
+    group.value = { ...useGroupStore().groups[ind.value] };
     messageModal.value = "Guruh ma'lumotlarini o'zgartirmoqchimisiz?";
   }
 });
