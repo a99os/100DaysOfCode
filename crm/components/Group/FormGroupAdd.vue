@@ -136,6 +136,7 @@
     <!-- Grurh nomi, teacher, weekDays, startTime, students, direction -->
   </div>
   <Modalka
+    v-if="useGeneralStore().showGroupAdd == true"
     :text="messageModal"
     @funcYes="saveFunction"
     @funcNo="

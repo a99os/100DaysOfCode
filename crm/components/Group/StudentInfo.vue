@@ -5,7 +5,7 @@
     <div
       class="absolute font-bold px-3 z-[3] text-[16px] text-bgPrimary py-1 -top-[20px] left-5 bg-darkYellow uppercase border border-colorPrimary rounded-md"
     >
-      Ashirboyev Abbos
+      {{ props.student.ind }}. {{ props.student.full_name }}
     </div>
 
     <ul class="flex flex-wrap gap-y-4 gap-x-2 items-center">
@@ -19,5 +19,7 @@
     </ul>
   </div>
 </template>
-<script setup></script>
+<script setup>
+const props = defineProps(["student"]);
+</script>
 <style lang=""></style>

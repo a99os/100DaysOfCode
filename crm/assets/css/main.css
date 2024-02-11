@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 body {
+  transition-duration: 300ms !important;
   background-color: #080b38;
   color: #feedd9;
   font-family: "Jost";
   letter-spacing: 3px;
-  transition-duration: 300ms;
+  --vs-search-input-placeholder-color: #9c9b9b;
+
   --vs-controls-color: #f8ac8c;
   --vs-border-color: #f8ac8c;
   --vs-dropdown-max-height: 200px;

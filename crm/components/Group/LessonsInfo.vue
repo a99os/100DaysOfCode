@@ -11,7 +11,7 @@
       <!-- guruh malumotlarini o'zgarish tugmasi -->
       <button
         @click="() => (useGeneralStore().showGroupAdd = true)"
-        class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-opcBlack duration-300 py-1 duration-300 bg-red hover:bg-colorPrimary border border-colorPrimary rounded-md"
+        class="font-bold px-3 z-[3] text-[16px] text-colorPrimary hover:text-opcBlack py-1 duration-300 bg-red hover:bg-colorPrimary border border-colorPrimary rounded-md"
       >
         <span> ⚙️ <span class="hidden md:inline">O'zgartish</span> </span>
       </button>

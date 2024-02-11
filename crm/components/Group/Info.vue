@@ -1,8 +1,14 @@
 <template lang="">
   <ul
-    class="w-full min-h-[50px] flex-col md:flex-row bg-opcBlack border-b border-colorPrimary flex md:gap-3 items-start py-2 px-3 md:items-center text-[16px] justify-center h-full"
+    class="relative w-full min-h-[50px] flex-col md:flex-row bg-opcBlack border-b border-colorPrimary flex md:gap-3 items-start py-2 px-3 md:items-center text-[16px] justify-center h-full"
   >
-    <b class="text-colorPrimary py-1 px-2 rounded-md bg-green">{{
+    <button
+      @click="useRouter().go(-1)"
+      class="bg-red py-1 px-2 flex items-center text-[40px] md:absolute left-1 rounded-md hover:opacity-100 opacity-65 text-colorPrimary"
+    >
+      <i class="bx bx-arrow-back"></i>
+    </button>
+    <b class="text-colorPrimary mt-2 md:mt-0 py-1 px-2 rounded-md bg-green">{{
       group.name
     }}</b>
     <div class="h-[60%] w-[1px] bg-colorPrimary"></div>

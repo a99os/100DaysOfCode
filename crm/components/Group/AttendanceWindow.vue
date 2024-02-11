@@ -76,6 +76,7 @@
       </div>
     </div>
     <Modalka
+      v-if="useGeneralStore().showAttendance == true"
       :text="'Davomatni saqlamoqchimisiz?'"
       @funcYes="
         () => {
