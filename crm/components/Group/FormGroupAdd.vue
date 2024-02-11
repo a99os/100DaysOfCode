@@ -136,18 +136,8 @@
     <!-- Grurh nomi, teacher, weekDays, startTime, students, direction -->
   </div>
   <Modalka
-    :text="'Yangi Guruh Ochmoqchimisiz?'"
-    @funcYes="
-      () => {
-        useGroupStore().groups.push({
-          id: useGroupStore().groups.length + 1,
-          ...group,
-        });
-        group = {};
-        useGeneralStore().showGroupAdd = false;
-        useGeneralStore().showModal = false;
-      }
-    "
+    :text="messageModal"
+    @funcYes="saveFunction"
     @funcNo="
       () => {
         useGeneralStore().showModal = false;
@@ -164,6 +154,30 @@
 // let direction = ref(null);
 let group = ref({});
 import vSelect from "vue-select";
+let ind = ref(null);
+let messageModal = ref("Yangi guruh ochmoqchimisz?");
+function saveFunction() {
+  if (useRoute().params.id) {
+    useGroupStore().groups[ind.value] = group.value;
+  } else {
+    useGroupStore().groups.push({
+      id: useGroupStore().groups.length + 1,
+      ...group.value,
+    });
+    group = {};
+  }
+  useGeneralStore().showGroupAdd = false;
+  useGeneralStore().showModal = false;
+}
+onMounted(() => {
+  if (useRoute()?.params?.id) {
+    ind.value = useGroupStore().groups.findIndex(
+      (el) => el.id == useRoute().params.id
+    );
+    group.value = useGroupStore().groups[ind.value];
+    messageModal.value = "Guruh ma'lumotlarini o'zgartirmoqchimisiz?";
+  }
+});
 </script>
 <style scoped>
 .vs__dropdown-menu {

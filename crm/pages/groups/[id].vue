@@ -9,6 +9,7 @@
       <GroupStudentsList />
     </div>
     <GroupAttendanceWindow class="" />
+    <GroupFormGroupAdd class="" />
   </div>
 </template>
 <script></script>
