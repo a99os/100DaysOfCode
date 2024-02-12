@@ -12,11 +12,12 @@
     <div
       class="h-[90%] md:h-[80%] w-full overflow-x-scroll md:min-w-[920px] rounded-md bg-bgPrimary py-5 md:py-10 px-5 md:px-14"
     >
+      {{ useGroupStore().getLessonToday()?.attendance }}-{{ attendance }}
       <div class="flex w-full gap-10 item-center">
         <p class="w-[50px] md:w-[100px]">Sana:</p>
         <input
           type="Text"
-          v-model="lesson.date"
+          v-model="date"
           class="rounded-[7px] py-1 flex-grow px-2 outline-none border border-activeColor bg-transparent"
         />
       </div>
@@ -24,7 +25,7 @@
         <p class="w-[50px] md:w-[100px]">Mavzu:</p>
         <input
           required
-          v-model="lesson.theme"
+          v-model="theme"
           type="Text"
           class="rounded-[7px] px-2 py-1 flex-grow outline-none border border-activeColor bg-transparent"
         />
@@ -39,29 +40,22 @@
             {{ item.full_name }}
           </p>
           <div class="flex flex-grow items-center">
+            <!-- {{ checkAttendance(item.id) }} -->
             <button
               @click="attendanceChange('be', item.id)"
-              :class="
-                lesson?.attendance?.includes(item.id)
-                  ? 'bg-green'
-                  : 'bg-hoverColor'
-              "
+              :class="checkAttendance(item.id) ? 'bg-green' : 'bg-hoverColor'"
               class="uppercase py-1 px-2 duration-300 rounded-l-md"
             >
               Bor</button
             ><button
               @click="attendanceChange('not', item.id)"
-              :class="
-                lesson?.attendance?.includes(item.id)
-                  ? 'bg-hoverColor'
-                  : 'bg-red'
-              "
+              :class="checkAttendance(item.id) ? 'bg-hoverColor' : 'bg-red'"
               class="uppercase py-1 px-2 duration-300 rounded-r-md"
             >
               Yo'q
             </button>
             <input
-              v-if="!lesson?.attendance?.includes(item.id)"
+              v-if="!checkAttendance(item.id)"
               v-model="reasons[item.id]"
               type="Text"
               placeholder="Sababi noma'lum"
@@ -105,15 +99,25 @@
 <script setup>
 let load = ref(false);
 let reasons = ref({});
-let lesson = ref({});
+let attendance = ref([]);
+let date = new Date().toLocaleDateString();
+let theme = ref("");
+
+const checkAttendance = (id) => {
+  if (attendance.value.length) {
+    return attendance.value.includes(id) ? true : false;
+  } else return false;
+};
+
+// let lesson = ref({});
 let ind = ref(null);
 function yesFnc() {
-  useGroupStore().groups[ind.value].lessons[getDate(lesson.value.date)] = {
-    ...lesson.value,
+  useGroupStore().groups[ind.value].lessons[date] = {
+    date: date,
+    attendance: [...attendance.value],
     reasons: { ...reasons },
   };
 
-  lesson.value = { ...useGroupStore().getLessonToday() };
   useGeneralStore().showAttendance = false;
   useGeneralStore().showModal = false;
 }
@@ -125,40 +129,40 @@ function getStudents() {
   }
 }
 function hiddenWindow2() {
+  useGeneralStore().showAttendance = false;
+  getFullData();
+}
+// function getDate(date) {
+//   return new Date(date).toLocaleDateString();
+// }
+function addAllAttendance() {
+  attendance.value = [...getStudents()]?.map((student) => student.id);
+}
+function getFullData() {
   if (useGroupStore().getLessonToday()) {
-    lesson.value = { ...useGroupStore().getLessonToday() };
+    reasons.value = { ...useGroupStore().getLessonToday().reasons };
+    attendance.value = [...useGroupStore().getLessonToday().attendance];
+    theme: theme.value;
   } else {
     addAllAttendance();
   }
-  useGeneralStore().showAttendance = false;
-}
-function getDate(date) {
-  return new Date(date).toLocaleDateString();
-}
-function addAllAttendance() {
-  lesson.value.attendance = [...getStudents()]?.map((student) => student.id);
-  lesson.value.date = new Date().toLocaleDateString();
 }
 
 function hiddenWindow(e) {
   if (e.target.id == "windowWrapper2") {
+    getFullData();
     useGeneralStore().showAttendance = false;
-    if (useGroupStore().getLessonToday()) {
-      lesson.value = { ...useGroupStore().getLessonToday() };
-    } else {
-      addAllAttendance();
-    }
   }
 }
 
 function attendanceChange(type, id) {
   if (type == "be") {
-    if (!lesson.value?.attendance?.includes(id)) {
-      lesson.value.attendance.push(id);
+    if (!attendance.value.includes(id)) {
+      attendance.value.push(id);
     }
   } else {
-    if (lesson.value?.attendance?.includes(id)) {
-      lesson.value.attendance.splice(lesson.value.attendance.indexOf(id), 1);
+    if (attendance.value?.includes(id)) {
+      attendance.value.splice(attendance.value.indexOf(id), 1);
     }
   }
 }
@@ -167,17 +171,12 @@ onMounted(() => {
   ind.value = useGroupStore().groups.findIndex(
     (el) => el.id == useRoute().params.id
   );
-  addAllAttendance();
+  getFullData();
   load.value = true;
-  let date = new Date().toLocaleDateString();
 
   // if (useGroupStore()?.groups[ind.value]?.lessons[date]) {
   //   lesson.value = useGroupStore()?.groups[ind.value]?.lessons[date] || {};
   // }
-  if (useGroupStore().getLessonToday()) {
-    lesson.value = { ...useGroupStore().getLessonToday() };
-    reasons.value = lesson.value.reasons;
-  }
 });
 </script>
 <style scoped>
