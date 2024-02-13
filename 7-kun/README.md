@@ -4,3 +4,5 @@ Foydalanuvchilar bo'limi uchun filterlarni qo'shdik (2024-02-13 at 09.19.41)
 Userlar uchun list shabloni va ularni qo'shish uchun form yasadik(2024-02-13 at 11.10.11)
 <img src="./images/Screenshot 2024-02-13 at 11.10.11.png"/>
 <img src="./images/Screenshot 2024-02-13 at 11.10.21.png"/>
+Real datalarni userlistga qo'shdik va paginationni to'g'irladik
+<img src="./images/Screenshot 2024-02-13 at 12.18.52.png"/>
