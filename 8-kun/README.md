@@ -10,3 +10,5 @@ Foydalanuvchilar ni delete qilish modalkasini qildik
 Akkount setting oynasini qildik
 <img src="./images//Screenshot 2024-02-14 at 11.30.01.png"/>
 
+Change password oynasini qildik
+<img src="./images//Screenshot 2024-02-14 at 11.30.01.png"/>
