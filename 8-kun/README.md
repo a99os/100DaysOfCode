@@ -4,3 +4,6 @@ Foydalanuvchilar ni edit va delete qilish knopkalarini qo'shdik
 Foydalanuvchilar ni edit qilish oynasini qildik
 <img src="./images/Screenshot 2024-02-14 at 11.28.39.png"/>
 
+Foydalanuvchilar ni delete qilish modalkasini qildik
+<img src="./images/Screenshot 2024-02-14 at 11.28.49.png"/>
+
